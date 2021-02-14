@@ -161,11 +161,11 @@ blueprint:
 variables:
   # convert input tags to variables, to be used in templates
   integration: !input integration
-  button_left_long_loop: !input button_left_long_loop
-  button_right_long_loop: !input button_right_long_loop
-  button_up_long_loop: !input button_up_long_loop
-  button_down_long_loop: !input button_down_long_loop
-  helper_last_loop_event_input: !input helper_last_loop_event_input
+#  button_left_long_loop: !input button_left_long_loop
+#  button_right_long_loop: !input button_right_long_loop
+#  button_up_long_loop: !input button_up_long_loop
+#  button_down_long_loop: !input button_down_long_loop
+#  helper_last_loop_event_input: !input helper_last_loop_event_input
   # integration id used to select items in the action mapping
   integration_id: '{{ integration | lower }}'
   # mapping between actions and integrations
