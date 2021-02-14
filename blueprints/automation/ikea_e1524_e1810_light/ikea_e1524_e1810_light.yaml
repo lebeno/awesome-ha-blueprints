@@ -39,6 +39,7 @@ blueprint:
 #       number of brightness steps (default: 10)
 #       number of colour steps (default IKEA: 9)
 #       transition time
+#       dim down to off state: Y/N
 #       
 #    action_left_short:
 #      name: (Optional) Left button - short press
@@ -321,13 +322,8 @@ action:
 #    # for the zha integration, need to check the previous button event, stored in the provided input_text
 #    - '{{ not integration_id == "zha" or states(helper_last_loop_event_input) in button_right_long }}'
 #    sequence: !input action_right_release
-  - conditions: "{{ trigger_action in button_up_short }}"
-    sequence:
-      - service: light.turn_on
-        data:
-          brightness_step_pct: 10
-          transition: 0
-        entity_id: !input light_target
+#  - conditions: "{{ trigger_action in button_up_short }}"
+#    sequence: !input action_up_short
 #  - conditions: "{{ trigger_action in button_up_long }}"
 #    sequence:
 #    # for zha integration, store the button event only if a release action has been provided (else the check would be useless)
@@ -374,11 +370,12 @@ action:
 #    # for the zha integration, need to check the previous button event, stored in the provided input_text
 #    - '{{ not integration_id == "zha" or states(helper_last_loop_event_input) in button_down_long }}'
 #    sequence: !input action_down_release
+#  - conditions: "{{ trigger_action in button_center_short }}"
+#    sequence: !input action_center_short
   - conditions: "{{ trigger_action in button_center_short }}"
-    sequence: !input action_center_short
+    sequence:
       - service: light.toggle
         entity_id: !input light_target
-        
 #  - conditions: "{{ trigger_action in button_center_hold }}"
 #    # run the hold action once, since the remote doesn't provide a release event on the center button
 #    # moreover, the short center button press event is always triggered before this event
