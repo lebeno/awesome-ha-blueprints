@@ -30,7 +30,8 @@ blueprint:
         entity:
           domain: sensor
     light_target:
-      name: Light
+      name: Light(s)
+      description: The light(s) to control
       selector:
         target:
           entity:
@@ -168,6 +169,7 @@ variables:
 #  helper_last_loop_event_input: !input helper_last_loop_event_input
   # integration id used to select items in the action mapping
   integration_id: '{{ integration | lower }}'
+  light_target: !input 'light_target'
   # mapping between actions and integrations
   actions_mapping:
     zigbee2mqtt:
@@ -375,8 +377,7 @@ action:
   - conditions: "{{ trigger_action in button_center_short }}"
     sequence:
     - service: light.toggle
-      data:
-        entity_id: !input light_target
+      target: !input light_target
 #  - conditions: "{{ trigger_action in button_center_hold }}"
 #    # run the hold action once, since the remote doesn't provide a release event on the center button
 #    # moreover, the short center button press event is always triggered before this event
