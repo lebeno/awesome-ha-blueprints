@@ -375,7 +375,8 @@ action:
   - conditions: "{{ trigger_action in button_center_short }}"
     sequence:
     - service: light.toggle
-      entity_id: !input light_target
+      data:
+        entity_id: !input light_target
 #  - conditions: "{{ trigger_action in button_center_hold }}"
 #    # run the hold action once, since the remote doesn't provide a release event on the center button
 #    # moreover, the short center button press event is always triggered before this event
